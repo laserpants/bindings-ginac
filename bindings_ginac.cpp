@@ -36,12 +36,17 @@ void ginac_ex_print(const ex &this_ex)
     std::cout << this_ex << std::endl;
 }
 
+void ginac_basic_free(basic *this_basic)
+{
+    delete this_basic;
+}
+
 symbol *ginac_symbol_new(const char *name)
 {
     return new symbol(name);
 }
 
-void ginac_symbol_free(symbol *this_symbol)
+add *ginac_add_new(const ex &lh, const ex &rh)
 {
-    delete this_symbol;
+    return new add(lh, rh);
 }

@@ -9,6 +9,9 @@ data GinacEx
 -- | Data type to represent the GiNaC::symbol C++ type
 data GinacSymbol
 
+-- | Data type to represent the GiNaC::add C++ type
+data GinacAdd
+
 -- | Opaque pointer for garbage collected GiNaC::ex objects
 type GinacExPtr = ForeignPtr GinacEx
 
@@ -36,11 +39,14 @@ foreign import ccall "ginac_ex_to_str"
 foreign import ccall "ginac_ex_print"
     ginac_ex_print :: Ptr GinacEx -> IO ()
 
+foreign import ccall "ginac_basic_free"
+    ginac_basic_free :: Ptr a -> IO ()
+
+foreign import ccall "&ginac_basic_free"
+    ginac_basic_free_fun :: FunPtr (Ptr a -> IO ())
+
 foreign import ccall "ginac_symbol_new"
     ginac_symbol_new :: CString -> IO (Ptr GinacSymbol)
 
-foreign import ccall "ginac_symbol_free"
-    ginac_symbol_free :: Ptr GinacSymbol -> IO ()
-
-foreign import ccall "&ginac_symbol_free"
-    ginac_symbol_free_fun :: FunPtr (Ptr GinacSymbol -> IO ())
+foreign import ccall "ginac_add_new"
+    ginac_add_new :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacAdd)

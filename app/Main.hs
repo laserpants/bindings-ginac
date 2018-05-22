@@ -12,6 +12,6 @@ main = do
     ginac_ex_print p
 
     ginac_ex_free p
-    ginac_symbol_free x
+    ginac_basic_free x
 
     pure ()
