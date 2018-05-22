@@ -24,6 +24,15 @@ dependencies:
 
 library:
   source-dirs: src
+  extra-libraries:
+  - ginac
+  - cln
+  - stdc++
+  c-sources: 
+  - bindings_ginac.cpp
+  - bindings_ginac.h
+  cc-options: -fPIC --std=c++11 -O3
+  ghc-options: -pgmlg++
 
 executables:
   bindings-ginac-exe:
