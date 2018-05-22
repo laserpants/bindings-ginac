@@ -1,10 +1,17 @@
 module Main where
 
+import Foreign.C.String
 import Ginac.FFI
 
 main :: IO ()
 main = do
-    p <- ginac_ex_new_from_int 5
+
+    x <- withCString "x" ginac_symbol_new
+    p <- ginac_ex_new_from_basic x
+
     ginac_ex_print p
+
     ginac_ex_free p
+    ginac_symbol_free x
+
     pure ()

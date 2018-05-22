@@ -18,11 +18,11 @@ type GinacSymbolPtr = ForeignPtr GinacSymbol
 foreign import ccall "ginac_ex_new"
     ginac_ex_new :: IO (Ptr GinacEx)
 
+foreign import ccall "ginac_ex_new_from_basic"
+    ginac_ex_new_from_basic :: Ptr a -> IO (Ptr GinacEx)
+
 foreign import ccall "ginac_ex_new_from_int"
     ginac_ex_new_from_int :: Int -> IO (Ptr GinacEx)
-
-foreign import ccall "ginac_ex_new_from_symbol"
-    ginac_ex_new_from_symbol :: Ptr GinacSymbol -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_free"
     ginac_ex_free :: Ptr GinacEx -> IO ()
@@ -35,3 +35,12 @@ foreign import ccall "ginac_ex_to_str"
 
 foreign import ccall "ginac_ex_print"
     ginac_ex_print :: Ptr GinacEx -> IO ()
+
+foreign import ccall "ginac_symbol_new"
+    ginac_symbol_new :: CString -> IO (Ptr GinacSymbol)
+
+foreign import ccall "ginac_symbol_free"
+    ginac_symbol_free :: Ptr GinacSymbol -> IO ()
+
+foreign import ccall "&ginac_symbol_free"
+    ginac_symbol_free_fun :: FunPtr (Ptr GinacSymbol -> IO ())
