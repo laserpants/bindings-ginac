@@ -12,12 +12,6 @@ data GinacSymbol
 -- | Data type to represent the GiNaC::add C++ type
 data GinacAdd
 
--- | Opaque pointer for garbage collected GiNaC::ex objects
-type GinacExPtr = ForeignPtr GinacEx
-
--- | Opaque pointer for garbage collected GiNaC::symbol objects
-type GinacSymbolPtr = ForeignPtr GinacSymbol
-
 foreign import ccall "ginac_ex_new"
     ginac_ex_new :: IO (Ptr GinacEx)
 

@@ -3,6 +3,7 @@ module Main where
 import Foreign.C.String
 import Foreign.Marshal.Alloc
 import Ginac.FFI
+import Ginac.FFI.ForeignPtr
 
 main :: IO ()
 main = do
