@@ -3,6 +3,7 @@ module Ginac
   , Symbol
   , abs
   , add
+  , binop
   , diff
   , diffn
   , div
@@ -43,14 +44,17 @@ num = expr . ginac_ex_new_from_int
 var :: Symbol -> Expr
 var (Sy ptr) = expr (withForeignPtr ptr ginac_ex_new_from_basic)
 
+binop :: (Ptr a -> Ptr b -> IO c) -> ForeignPtr a -> ForeignPtr b -> IO c
+binop op p q = withForeignPtr p (withForeignPtr q . op)
+
 add :: Expr -> Expr -> Expr
-add (Ex p) (Ex q) = expr (withForeignPtr p (withForeignPtr q . ginac_add))
+add (Ex p) (Ex q) = expr (binop ginac_add p q)
 
 mul :: Expr -> Expr -> Expr
-mul (Ex p) (Ex q) = expr (withForeignPtr p (withForeignPtr q . ginac_mul))
+mul (Ex p) (Ex q) = expr (binop ginac_mul p q)
 
 div :: Expr -> Expr -> Expr
-div = undefined
+div (Ex p) (Ex q) = expr (binop ginac_div p q)
 
 pow :: Expr -> Expr -> Expr
 pow = undefined
@@ -59,10 +63,10 @@ neg :: Expr -> Expr
 neg (Ex ptr) = expr (withForeignPtr ptr ginac_ex_neg)
 
 abs :: Expr -> Expr
-abs = undefined
+abs (Ex ptr) = expr (withForeignPtr ptr ginac_ex_abs)
 
 signum :: Expr -> Expr
-signum = undefined
+signum (Ex ptr) = expr (withForeignPtr ptr ginac_ex_signum)
 
 diff :: Expr -> Expr
 diff = undefined
@@ -74,7 +78,7 @@ factorial :: Int -> Expr
 factorial = undefined
 
 sqrt :: Expr -> Expr
-sqrt = undefined
+sqrt (Ex ptr) = expr (withForeignPtr ptr ginac_ex_sqrt)
 
 rational :: Rational -> Expr
 rational = undefined

@@ -76,6 +76,30 @@ GiNaC::ex *ginac_ex_neg(const GiNaC::ex &this_ex)
     return new ex(mul(-1, this_ex));
 }
 
+ex *ginac_ex_abs(const ex &this_ex)
+{
+    DEBUG_PRINT("ex +1");
+    return new ex(abs(this_ex));
+}
+
+ex *ginac_ex_signum(const ex &this_ex)
+{
+    DEBUG_PRINT("ex +1");
+    if (this_ex > 0) {
+        return new ex(1);
+    } else if (this_ex < 0) {
+        return new ex(-1);
+    } else {
+        return new ex(0);
+    }
+}
+
+ex *ginac_ex_sqrt(const ex &this_ex)
+{
+    DEBUG_PRINT("ex +1");
+    return new ex(sqrt(this_ex));
+}
+
 ex *ginac_add(const ex &lh, const ex &rh)
 {
     DEBUG_PRINT("ex +1");
@@ -86,4 +110,10 @@ ex *ginac_mul(const ex &lh, const ex &rh)
 {
     DEBUG_PRINT("ex +1");
     return new ex(mul(lh, rh));
+}
+
+ex *ginac_div(const ex &lh, const ex &rh)
+{
+    DEBUG_PRINT("ex +1");
+    return new ex(lh/rh);
 }
