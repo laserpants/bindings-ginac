@@ -117,3 +117,8 @@ ex *ginac_div(const ex &lh, const ex &rh)
     DEBUG_PRINT("ex +1");
     return new ex(lh/rh);
 }
+
+ex *ginac_diff(int nth, const ex &this_ex, const symbol &x)
+{
+    return new ex(this_ex.diff(x, nth));
+}

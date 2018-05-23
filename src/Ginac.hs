@@ -3,7 +3,6 @@ module Ginac
   , Symbol
   , abs
   , add
-  , binop
   , diff
   , diffn
   , div
@@ -68,11 +67,11 @@ abs (Ex ptr) = expr (withForeignPtr ptr ginac_ex_abs)
 signum :: Expr -> Expr
 signum (Ex ptr) = expr (withForeignPtr ptr ginac_ex_signum)
 
-diff :: Expr -> Expr
-diff = undefined
+diff :: Expr -> Symbol -> Expr
+diff (Ex p) (Sy q) = expr (binop (ginac_diff 1) p q)
 
-diffn :: Int -> Expr -> Expr
-diffn nth = undefined
+diffn :: Int -> Expr -> Symbol -> Expr
+diffn nth (Ex p) (Sy q) = expr (binop (ginac_diff nth) p q)
 
 factorial :: Int -> Expr
 factorial = undefined
