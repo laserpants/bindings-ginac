@@ -6,13 +6,20 @@ import Foreign.Marshal.Alloc
 import Ginac
 import Ginac.FFI
 import Ginac.FFI.ForeignPtr
+import Ginac.Symbolic
 
 main :: IO ()
 main = do
 
-    x <- newSymbol "x"
-    let a = add (var x) (num 5)
+    sx <- newSymbol "x"
+    let a = add (var sx) (num 5)
     print (toString a)
+
+    let x = var sx
+
+    let b = 1 / (1 - x)
+    print (toString b)
+
 
 --    x <- withCString "x" ginac_symbol_new
 --    p <- ginac_ex_new_from_basic x
