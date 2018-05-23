@@ -20,6 +20,7 @@ module Ginac
   ) where
 
 import Control.Monad
+import Data.Ratio
 import Foreign
 import Foreign.C.String
 import Ginac.FFI
@@ -80,7 +81,9 @@ sqrt :: Expr -> Expr
 sqrt (Ex ptr) = expr (withForeignPtr ptr ginac_ex_sqrt)
 
 rational :: Rational -> Expr
-rational = undefined
+rational r = div (num n) (num d) where
+    n = fromInteger (numerator r)
+    d = fromInteger (denominator r)
 
 newSymbol :: String -> IO Symbol
 newSymbol name = liftM Sy ptr where
