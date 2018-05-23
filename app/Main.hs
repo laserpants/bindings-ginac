@@ -11,20 +11,20 @@ import Ginac.Symbolic
 main :: IO ()
 main = do
 
-    sx <- newSymbol "x"
+    s_x <- newSymbol "x"
 
-    let a = add (var sx) (num 5)
+    let a = add (var s_x) (num 5)
     print (toString a)
 
-    let x = var sx
+    let x = var s_x
 
     let b = 1 / (1 - x)
     print (toString b)
 
-    let c = subsInt (diffn 5 b sx) sx 0
+    let c = subsInt (diffn 5 b s_x) s_x 0
     print (toString c)
 
-    let c' = subsInt (diffn 4 b sx) sx 0
+    let c' = subsInt (diffn 4 b s_x) s_x 0
     print (toString c')
 
 --    x <- withCString "x" ginac_symbol_new

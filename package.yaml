@@ -32,7 +32,7 @@ library:
   - bindings_ginac.cpp
   - bindings_ginac.h
   cc-options: -fPIC --std=c++11 -O3 # -DDEBUG 
-  ghc-options: -pgmlg++
+  ghc-options: -pgmlg++ -fPIC
 
 executables:
   bindings-ginac-exe:

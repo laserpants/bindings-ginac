@@ -2,3 +2,4 @@
 bindings-ginac.cabal
 *~
 *.o
+*.out
