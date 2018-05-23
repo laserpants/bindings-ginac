@@ -15,6 +15,8 @@ module Ginac
   , rational
   , signum
   , sqrt
+  , subs
+  , subsInt
   , toString
   , var
   ) where
@@ -79,6 +81,15 @@ factorial = expr . ginac_factorial
 
 sqrt :: Expr -> Expr
 sqrt (Ex ptr) = expr (withForeignPtr ptr ginac_ex_sqrt)
+
+subs :: Expr -> Symbol -> Expr -> Expr
+subs (Ex p) (Sy q) (Ex r) = expr (withForeignPtr p ptr) where
+    ptr ex = withForeignPtr q (withForeignPtr r . ginac_ex_subs ex)
+
+subsInt :: Expr -> Symbol -> Int -> Expr
+subsInt (Ex p) (Sy q) i = expr ptr where
+    ptr :: IO (Ptr GinacEx)
+    ptr = withForeignPtr p (withForeignPtr q . ginac_ex_subs_int i)
 
 rational :: Rational -> Expr
 rational r = div (num n) (num d) where

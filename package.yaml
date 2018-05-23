@@ -31,8 +31,7 @@ library:
   c-sources: 
   - bindings_ginac.cpp
   - bindings_ginac.h
-  cc-options: -fPIC --std=c++11 -O3
-  # cc-options: -fPIC -DDEBUG --std=c++11 -O3
+  cc-options: -fPIC --std=c++11 -O3 # -DDEBUG 
   ghc-options: -pgmlg++
 
 executables:

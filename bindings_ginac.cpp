@@ -34,7 +34,7 @@ ex *ginac_ex_subs(const ex &this_ex, const symbol &s, const ex &other)
     return new ex(this_ex.subs(s == other));
 }
 
-ex *ginac_ex_subs_int(const ex &this_ex, const symbol &s, int i)
+ex *ginac_ex_subs_int(int i, const ex &this_ex, const symbol &s)
 {
     DEBUG_PRINT("ex +1");
     return new ex(this_ex.subs(s == i));

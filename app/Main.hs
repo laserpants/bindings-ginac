@@ -12,6 +12,7 @@ main :: IO ()
 main = do
 
     sx <- newSymbol "x"
+
     let a = add (var sx) (num 5)
     print (toString a)
 
@@ -20,6 +21,11 @@ main = do
     let b = 1 / (1 - x)
     print (toString b)
 
+    let c = subsInt (diffn 5 b sx) sx 0
+    print (toString c)
+
+    let c' = subsInt (diffn 4 b sx) sx 0
+    print (toString c')
 
 --    x <- withCString "x" ginac_symbol_new
 --    p <- ginac_ex_new_from_basic x
