@@ -25,6 +25,8 @@ GiNaC::ex *ginac_add(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::ex *ginac_mul(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::ex *ginac_div(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::ex *ginac_diff(int nth, const GiNaC::ex &this_ex, const GiNaC::symbol &x);
+GiNaC::ex *ginac_pow(const GiNaC::ex &b, const GiNaC::ex &p);
+GiNaC::ex *ginac_factorial(int n);
 
 #ifdef __cplusplus
 }

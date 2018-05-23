@@ -120,5 +120,18 @@ ex *ginac_div(const ex &lh, const ex &rh)
 
 ex *ginac_diff(int nth, const ex &this_ex, const symbol &x)
 {
+    DEBUG_PRINT("ex +1");
     return new ex(this_ex.diff(x, nth));
+}
+
+ex *ginac_pow(const ex &b, const ex &p)
+{
+    DEBUG_PRINT("ex +1");
+    return new ex(pow(b, p));
+}
+
+ex *ginac_factorial(int n)
+{
+    DEBUG_PRINT("ex +1");
+    return new ex(factorial(n));
 }

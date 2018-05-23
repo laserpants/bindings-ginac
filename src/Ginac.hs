@@ -56,7 +56,7 @@ div :: Expr -> Expr -> Expr
 div (Ex p) (Ex q) = expr (binop ginac_div p q)
 
 pow :: Expr -> Expr -> Expr
-pow = undefined
+pow (Ex p) (Ex q) = expr (binop ginac_pow p q)
 
 neg :: Expr -> Expr
 neg (Ex ptr) = expr (withForeignPtr ptr ginac_ex_neg)
@@ -74,7 +74,7 @@ diffn :: Int -> Expr -> Symbol -> Expr
 diffn nth (Ex p) (Sy q) = expr (binop (ginac_diff nth) p q)
 
 factorial :: Int -> Expr
-factorial = undefined
+factorial = expr . ginac_factorial
 
 sqrt :: Expr -> Expr
 sqrt (Ex ptr) = expr (withForeignPtr ptr ginac_ex_sqrt)
