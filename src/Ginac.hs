@@ -1,9 +1,20 @@
 module Ginac 
   ( Expr
   , Symbol
+  , abs
   , add
+  , diff
+  , diffn
+  , div
+  , factorial
+  , mul
+  , neg
+  , newSymbol
   , num
-  , symbol
+  , pow
+  , rational
+  , signum
+  , sqrt
   , toString
   , var
   ) where
@@ -33,8 +44,41 @@ var (Sy ptr) = expr (withForeignPtr ptr ginac_ex_new_from_basic)
 add :: Expr -> Expr -> Expr
 add (Ex p) (Ex q) = expr (withForeignPtr p (withForeignPtr q . ginac_add))
 
-symbol :: String -> IO Symbol
-symbol name = liftM Sy ptr where
+mul :: Expr -> Expr -> Expr
+mul (Ex p) (Ex q) = expr (withForeignPtr p (withForeignPtr q . ginac_mul))
+
+div :: Expr -> Expr -> Expr
+div = undefined
+
+pow :: Expr -> Expr -> Expr
+pow = undefined
+
+neg :: Expr -> Expr
+neg (Ex ptr) = expr (withForeignPtr ptr ginac_ex_neg)
+
+abs :: Expr -> Expr
+abs = undefined
+
+signum :: Expr -> Expr
+signum = undefined
+
+diff :: Expr -> Expr
+diff = undefined
+
+diffn :: Int -> Expr -> Expr
+diffn nth = undefined
+
+factorial :: Int -> Expr
+factorial = undefined
+
+sqrt :: Expr -> Expr
+sqrt = undefined
+
+rational :: Rational -> Expr
+rational = undefined
+
+newSymbol :: String -> IO Symbol
+newSymbol name = liftM Sy ptr where
     ptr = withCString name ginac_symbol_new 
       >>= newForeignPtr ginac_basic_free_fun
 

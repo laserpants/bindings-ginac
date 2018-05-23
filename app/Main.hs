@@ -10,7 +10,7 @@ import Ginac.FFI.ForeignPtr
 main :: IO ()
 main = do
 
-    x <- symbol "x"
+    x <- newSymbol "x"
     let a = add (var x) (num 5)
     print (toString a)
 

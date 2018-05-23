@@ -3,7 +3,7 @@
 #include "bindings_ginac.h"
 
 #ifdef DEBUG
-#define DEBUG_PRINT(x) std::cout << "GiNaC::" << x << std::endl
+#define DEBUG_PRINT(x) std::cout << x << std::endl
 #else
 #define DEBUG_PRINT(x)
 #endif
@@ -70,8 +70,20 @@ symbol *ginac_symbol_new(const char *name)
     return new symbol(name);
 }
 
+GiNaC::ex *ginac_ex_neg(const GiNaC::ex &this_ex)
+{
+    DEBUG_PRINT("ex +1");
+    return new ex(mul(-1, this_ex));
+}
+
 ex *ginac_add(const ex &lh, const ex &rh)
 {
     DEBUG_PRINT("ex +1");
     return new ex(add(lh, rh));
+}
+
+ex *ginac_mul(const ex &lh, const ex &rh)
+{
+    DEBUG_PRINT("ex +1");
+    return new ex(mul(lh, rh));
 }
