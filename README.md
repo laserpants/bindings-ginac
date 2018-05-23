@@ -1,4 +1,4 @@
 # bindings-ginac
 
-[x] Experimental
-[x] Incomplete
+- [x] Experimental
+- [x] Incomplete
