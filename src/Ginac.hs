@@ -26,6 +26,8 @@ import Ginac.FFI
 import Ginac.FFI.ForeignPtr
 import System.IO.Unsafe
 
+import Prelude hiding ( abs, div, signum, sqrt )
+
 newtype Expr = Ex GinacExPtr
 newtype Symbol = Sy GinacSymbolPtr
 
