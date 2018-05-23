@@ -14,12 +14,19 @@ main = do
     s <- ginac_ex_new_from_basic r
 
     t <- ginac_ex_to_str s
-    u <- peekCString t
-    print u
+    peekCString t >>= print
     free t
 
+    v <- ginac_ex_subs_int s x 5
+
+    w <- ginac_ex_to_str v
+    peekCString w >>= print
+    free w
+
+    ginac_ex_free v
     ginac_ex_free s
     ginac_basic_free r
+    ginac_ex_free q
     ginac_ex_free p
     ginac_basic_free x
 

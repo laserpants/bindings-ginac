@@ -10,6 +10,8 @@ extern "C" {
 GiNaC::ex *ginac_ex_new();
 GiNaC::ex *ginac_ex_new_from_basic(const GiNaC::basic &other);
 GiNaC::ex *ginac_ex_new_from_int(int i);
+GiNaC::ex *ginac_ex_subs(const GiNaC::ex &this_ex, const GiNaC::symbol &s, const GiNaC::ex &other);
+GiNaC::ex *ginac_ex_subs_int(const GiNaC::ex &this_ex, const GiNaC::symbol &s, int i);
 void ginac_ex_free(GiNaC::ex *this_ex);
 char *ginac_ex_to_str(const GiNaC::ex &this_ex);
 void ginac_ex_print(const GiNaC::ex &this_ex);

@@ -19,6 +19,16 @@ ex *ginac_ex_new_from_int(int i)
     return new ex(i);
 }
 
+ex *ginac_ex_subs(const ex &this_ex, const symbol &s, const ex &other)
+{
+    return new ex(this_ex.subs(s == other));
+}
+
+ex *ginac_ex_subs_int(const ex &this_ex, const symbol &s, int i)
+{
+    return new ex(this_ex.subs(s == i));
+}
+
 void ginac_ex_free(ex *this_ex)
 {
     delete this_ex;

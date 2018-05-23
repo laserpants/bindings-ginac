@@ -27,6 +27,12 @@ foreign import ccall "ginac_ex_new_from_basic"
 foreign import ccall "ginac_ex_new_from_int"
     ginac_ex_new_from_int :: Int -> IO (Ptr GinacEx)
 
+foreign import ccall "ginac_ex_subs"
+    ginac_ex_subs :: Ptr GinacEx -> Ptr GinacSymbol -> Ptr GinacEx -> IO (Ptr GinacEx)
+
+foreign import ccall "ginac_ex_subs_int"
+    ginac_ex_subs_int :: Ptr GinacEx -> Ptr GinacSymbol -> Int -> IO (Ptr GinacEx)
+
 foreign import ccall "ginac_ex_free"
     ginac_ex_free :: Ptr GinacEx -> IO ()
 
