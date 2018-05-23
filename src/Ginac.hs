@@ -88,7 +88,6 @@ subs (Ex p) (Sy q) (Ex r) = expr (withForeignPtr p ptr) where
 
 subsInt :: Expr -> Symbol -> Int -> Expr
 subsInt (Ex p) (Sy q) i = expr ptr where
-    ptr :: IO (Ptr GinacEx)
     ptr = withForeignPtr p (withForeignPtr q . ginac_ex_subs_int i)
 
 rational :: Rational -> Expr
@@ -103,4 +102,5 @@ newSymbol name = liftM Sy ptr where
 
 toString :: Expr -> String
 toString (Ex ptr) = unsafePerformIO io where
-    io = withForeignPtr ptr ginac_ex_to_str >>= peekCString
+    io = withForeignPtr ptr ginac_ex_to_str
+     >>= peekCString
