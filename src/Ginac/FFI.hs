@@ -9,9 +9,6 @@ data GinacEx
 -- | Data type to represent the GiNaC::symbol C++ type
 data GinacSymbol
 
--- | Data type to represent the GiNaC::add C++ type
-data GinacAdd
-
 foreign import ccall "ginac_ex_new"
     ginac_ex_new :: IO (Ptr GinacEx)
 
@@ -48,5 +45,5 @@ foreign import ccall "&ginac_basic_free"
 foreign import ccall "ginac_symbol_new"
     ginac_symbol_new :: CString -> IO (Ptr GinacSymbol)
 
-foreign import ccall "ginac_add_new"
-    ginac_add_new :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacAdd)
+foreign import ccall "ginac_add"
+    ginac_add :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
