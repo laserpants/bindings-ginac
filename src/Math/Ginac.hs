@@ -20,6 +20,7 @@ module Math.Ginac
   , subsInt
   , toString
   , var
+  , var1
   ) where
 
 import Control.Monad
@@ -47,8 +48,8 @@ num = expr . ginac_ex_new_from_int
 var :: Symbol -> Expr
 var (Sy ptr) = expr (withForeignPtr ptr ginac_ex_new_from_basic)
 
-var' :: Ptr GinacSymbol -> Expr
-var' ptr = expr (ginac_ex_new_from_basic ptr)
+var1 :: Ptr GinacSymbol -> Expr
+var1 ptr = expr (ginac_ex_new_from_basic ptr)
 
 binop :: (Ptr a -> Ptr b -> IO c) -> ForeignPtr a -> ForeignPtr b -> IO c
 binop op p q = withForeignPtr p (withForeignPtr q . op)
