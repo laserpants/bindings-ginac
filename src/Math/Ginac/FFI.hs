@@ -45,6 +45,9 @@ foreign import ccall "&ginac_basic_free"
 foreign import ccall "ginac_symbol_new"
     ginac_symbol_new :: CString -> IO (Ptr GinacSymbol)
 
+foreign import ccall "ginac_symbol_static"
+    ginac_symbol_static :: CString -> IO (Ptr GinacSymbol)
+
 foreign import ccall "ginac_ex_neg"
     ginac_ex_neg :: Ptr GinacEx -> IO (Ptr GinacEx)
 

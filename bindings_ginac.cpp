@@ -70,6 +70,13 @@ symbol *ginac_symbol_new(const char *name)
     return new symbol(name);
 }
 
+symbol *ginac_symbol_static()
+{
+    DEBUG_PRINT("symbol +1");
+    static symbol *s = new symbol;
+    return s;
+}
+
 GiNaC::ex *ginac_ex_neg(const GiNaC::ex &this_ex)
 {
     DEBUG_PRINT("ex +1");
