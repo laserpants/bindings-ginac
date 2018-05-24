@@ -101,9 +101,8 @@ newSymbol name = liftM Sy ptr where
     ptr = withCString name ginac_symbol_new 
       >>= newForeignPtr ginac_basic_free_fun
 
-staticSymbol :: IO Symbol
-staticSymbol = liftM Sy ptr where
-    ptr = ginac_symbol_static >>= newForeignPtr ginac_basic_free_fun
+staticSymbol :: IO (Ptr GinacSymbol)
+staticSymbol = ginac_symbol_static
 
 toString :: Expr -> String
 toString (Ex ptr) = unsafePerformIO io where
