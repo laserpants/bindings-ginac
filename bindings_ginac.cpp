@@ -28,6 +28,12 @@ ex *ginac_ex_new_from_int(int i)
     return new ex(i);
 }
 
+ex *ginac_ex_new_from_relation_eq(const ex &lh, const ex &rh)
+{
+    DEBUG_PRINT("ex +1");
+    return new ex(relational(lh, rh));
+}
+
 ex *ginac_ex_subs_int(int i, const ex &this_ex, const symbol &s)
 {
     DEBUG_PRINT("ex +1");
@@ -81,11 +87,11 @@ symbol *ginac_symbol_new(const char *name)
 
 symbol *ginac_symbol_static()
 {
-    static symbol *s = new symbol;
-    return s;
+    static symbol s;
+    return &s;
 }
 
-GiNaC::ex *ginac_ex_neg(const GiNaC::ex &this_ex)
+ex *ginac_ex_neg(const ex &this_ex)
 {
     DEBUG_PRINT("ex +1");
     return new ex(mul(-1, this_ex));
