@@ -55,3 +55,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - bindings-ginac
+    - hspec >= 2.4.8
