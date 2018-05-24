@@ -36,7 +36,7 @@ import System.IO.Unsafe
 import Prelude hiding ( abs, div, signum, sqrt )
 
 newtype Expr = Ex GinacExPtr
-newtype Symbol = Sy GinacSymbolPtr
+newtype Symbol = Sym GinacSymbolPtr
 
 unsafeExpr :: IO GinacExPtr -> Expr
 unsafeExpr = Ex . unsafePerformIO
@@ -48,7 +48,7 @@ num :: Int -> Expr
 num = expr . ginac_ex_new_from_int
 
 var :: Symbol -> Expr
-var (Sy ptr) = expr (withForeignPtr ptr ginac_ex_new_from_basic)
+var (Sym ptr) = expr (withForeignPtr ptr ginac_ex_new_from_basic)
 
 var1 :: Expr
 var1 = expr (ginac_symbol_static >>= ginac_ex_new_from_basic)
@@ -78,10 +78,10 @@ signum :: Expr -> Expr
 signum (Ex ptr) = expr (withForeignPtr ptr ginac_ex_signum)
 
 diff :: Expr -> Symbol -> Expr
-diff (Ex p) (Sy q) = expr (binop (ginac_diff 1) p q)
+diff (Ex p) (Sym q) = expr (binop (ginac_diff 1) p q)
 
 diffn :: Int -> Expr -> Symbol -> Expr
-diffn nth (Ex p) (Sy q) = expr (binop (ginac_diff nth) p q)
+diffn nth (Ex p) (Sym q) = expr (binop (ginac_diff nth) p q)
 
 factorial :: Int -> Expr
 factorial = expr . ginac_factorial
@@ -110,7 +110,7 @@ toInt (Ex ptr) = unsafePerformIO cast where
     cast = withForeignPtr ptr (numCast ginac_ex_to_int)
 
 subsInt :: Expr -> Symbol -> Int -> Expr
-subsInt (Ex p) (Sy q) i = expr ptr where
+subsInt (Ex p) (Sym q) i = expr ptr where
     ptr = withForeignPtr p (withForeignPtr q . ginac_ex_subs_int i)
 
 rational :: Rational -> Expr
@@ -119,7 +119,7 @@ rational r = div (num n) (num d) where
     d = fromInteger (denominator r)
 
 newSymbol :: String -> IO Symbol
-newSymbol name = liftM Sy ptr where
+newSymbol name = liftM Sym ptr where
     ptr = withCString name ginac_symbol_new 
       >>= newForeignPtr ginac_basic_free_fun
 
