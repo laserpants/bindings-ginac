@@ -30,6 +30,15 @@ foreign import ccall "ginac_ex_free"
 foreign import ccall "&ginac_ex_free"
     ginac_ex_free_fun :: FunPtr (Ptr GinacEx -> IO ())
 
+foreign import ccall "ginac_ex_is_numeric"
+    ginac_ex_is_numeric :: Ptr GinacEx -> IO Bool
+
+foreign import ccall "ginac_ex_to_double"
+    ginac_ex_to_double :: Ptr GinacEx -> IO Double
+
+foreign import ccall "ginac_ex_to_int"
+    ginac_ex_to_int :: Ptr GinacEx -> IO Int
+
 foreign import ccall "ginac_ex_to_str"
     ginac_ex_to_str :: Ptr GinacEx -> IO CString
 

@@ -1,5 +1,5 @@
 module Math.Ginac 
-  ( Expr
+  ( Expr(..)
   , Symbol
   , abs
   , add

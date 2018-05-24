@@ -46,6 +46,21 @@ void ginac_ex_free(ex *this_ex)
     delete this_ex;
 }
 
+bool ginac_ex_is_numeric(const ex &this_ex)
+{
+    return is_a<numeric>(this_ex);
+}
+
+double ginac_ex_to_double(const ex &this_ex)
+{
+    return ex_to<numeric>(this_ex).to_double();
+}
+
+int ginac_ex_to_int(const ex &this_ex)
+{
+    return ex_to<numeric>(this_ex).to_int();
+}
+
 char *ginac_ex_to_str(const ex &this_ex)
 {
     std::ostringstream out;
