@@ -7,6 +7,7 @@ module Math.Ginac
   , diffn
   , div
   , factorial
+  , isNumeric
   , mul
   , neg
   , newSymbol
@@ -90,6 +91,9 @@ sqrt (Ex ptr) = expr (withForeignPtr ptr ginac_ex_sqrt)
 subs :: Expr -> Symbol -> Expr -> Expr
 subs (Ex p) (Sy q) (Ex r) = expr (withForeignPtr p ptr) where
     ptr ex = withForeignPtr q (withForeignPtr r . ginac_ex_subs ex)
+
+isNumeric :: Expr -> Bool
+isNumeric (Ex ptr) = unsafePerformIO (withForeignPtr ptr ginac_ex_is_numeric)
 
 subsInt :: Expr -> Symbol -> Int -> Expr
 subsInt (Ex p) (Sy q) i = expr ptr where
