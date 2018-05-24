@@ -10,7 +10,6 @@ extern "C" {
 GiNaC::ex *ginac_ex_new();
 GiNaC::ex *ginac_ex_new_from_basic(const GiNaC::basic &other);
 GiNaC::ex *ginac_ex_new_from_int(int i);
-GiNaC::ex *ginac_ex_subs(const GiNaC::ex &this_ex, const GiNaC::symbol &s, const GiNaC::ex &other);
 GiNaC::ex *ginac_ex_subs_int(int i, const GiNaC::ex &this_ex, const GiNaC::symbol &s);
 void ginac_ex_free(GiNaC::ex *this_ex);
 bool ginac_ex_is_numeric(const GiNaC::ex &this_ex);
@@ -31,6 +30,7 @@ GiNaC::ex *ginac_div(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::ex *ginac_diff(int nth, const GiNaC::ex &this_ex, const GiNaC::symbol &x);
 GiNaC::ex *ginac_pow(const GiNaC::ex &b, const GiNaC::ex &p);
 GiNaC::ex *ginac_factorial(int n);
+GiNaC::relational *ginac_relation_eq_new(const GiNaC::ex &lh, const GiNaC::ex &rh);
 
 #ifdef __cplusplus
 }

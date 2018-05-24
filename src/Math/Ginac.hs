@@ -17,7 +17,6 @@ module Math.Ginac
   , signum
   , sqrt
   , staticSymbol
-  , subs
   , subsInt
   , toDouble
   , toInt
@@ -89,10 +88,6 @@ factorial = expr . ginac_factorial
 
 sqrt :: Expr -> Expr
 sqrt (Ex ptr) = expr (withForeignPtr ptr ginac_ex_sqrt)
-
-subs :: Expr -> Symbol -> Expr -> Expr
-subs (Ex p) (Sy q) (Ex r) = expr (withForeignPtr p ptr) where
-    ptr ex = withForeignPtr q (withForeignPtr r . ginac_ex_subs ex)
 
 isNumeric :: Expr -> Bool
 isNumeric (Ex ptr) = unsafePerformIO (withForeignPtr ptr ginac_ex_is_numeric)

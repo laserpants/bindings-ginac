@@ -28,12 +28,6 @@ ex *ginac_ex_new_from_int(int i)
     return new ex(i);
 }
 
-ex *ginac_ex_subs(const ex &this_ex, const symbol &s, const ex &other)
-{
-    DEBUG_PRINT("ex +1");
-    return new ex(this_ex.subs(s == other));
-}
-
 ex *ginac_ex_subs_int(int i, const ex &this_ex, const symbol &s)
 {
     DEBUG_PRINT("ex +1");
@@ -156,4 +150,10 @@ ex *ginac_factorial(int n)
 {
     DEBUG_PRINT("ex +1");
     return new ex(factorial(n));
+}
+
+relational *ginac_relation_eq_new(const ex &lh, const ex &rh)
+{
+    DEBUG_PRINT("relational +1");
+    return new relational(lh, rh);
 }
