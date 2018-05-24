@@ -19,6 +19,8 @@ module Math.Ginac
   , staticSymbol
   , subs
   , subsInt
+  , toDouble
+  , toInt
   , toString
   , var
   , var1
@@ -94,6 +96,23 @@ subs (Ex p) (Sy q) (Ex r) = expr (withForeignPtr p ptr) where
 
 isNumeric :: Expr -> Bool
 isNumeric (Ex ptr) = unsafePerformIO (withForeignPtr ptr ginac_ex_is_numeric)
+
+numCast :: (Ptr GinacEx -> IO a) -> Ptr GinacEx -> IO (Maybe a)
+numCast fun ptr = do
+    isNum <- ginac_ex_is_numeric ptr
+    if isNum
+        then fmap Just (fun ptr)
+        else pure Nothing
+
+toDouble :: Expr -> Maybe Double
+{-# NOINLINE toDouble #-}
+toDouble (Ex ptr) = unsafePerformIO cast where
+    cast = withForeignPtr ptr (numCast ginac_ex_to_double)
+
+toInt :: Expr -> Maybe Int
+{-# NOINLINE toInt #-}
+toInt (Ex ptr) = unsafePerformIO cast where
+    cast = withForeignPtr ptr (numCast ginac_ex_to_int)
 
 subsInt :: Expr -> Symbol -> Int -> Expr
 subsInt (Ex p) (Sy q) i = expr ptr where
