@@ -15,6 +15,7 @@ module Math.Ginac
   , rational
   , signum
   , sqrt
+  , staticSymbol
   , subs
   , subsInt
   , toString
@@ -99,6 +100,10 @@ newSymbol :: String -> IO Symbol
 newSymbol name = liftM Sy ptr where
     ptr = withCString name ginac_symbol_new 
       >>= newForeignPtr ginac_basic_free_fun
+
+staticSymbol :: IO Symbol
+staticSymbol = liftM Sy ptr where
+    ptr = ginac_symbol_static >>= newForeignPtr ginac_basic_free_fun
 
 toString :: Expr -> String
 toString (Ex ptr) = unsafePerformIO io where
