@@ -1,8 +1,8 @@
-module Ginac.Symbolic where
+module Math.Ginac.Symbolic where
 
-import Ginac
+import Math.Ginac
 
-import qualified Ginac as Ex
+import qualified Math.Ginac as Ex
 
 instance Num Expr where
     x + y        = add x y

@@ -1,7 +1,7 @@
-module Ginac.FFI.ForeignPtr where
+module Math.Ginac.FFI.ForeignPtr where
 
 import Foreign
-import Ginac.FFI
+import Math.Ginac.FFI
 
 -- | Opaque pointer for garbage collected GiNaC::ex objects
 type GinacExPtr = ForeignPtr GinacEx

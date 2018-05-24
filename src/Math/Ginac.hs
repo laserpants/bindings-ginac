@@ -1,4 +1,4 @@
-module Ginac 
+module Math.Ginac 
   ( Expr
   , Symbol
   , abs
@@ -25,8 +25,8 @@ import Control.Monad
 import Data.Ratio
 import Foreign
 import Foreign.C.String
-import Ginac.FFI
-import Ginac.FFI.ForeignPtr
+import Math.Ginac.FFI
+import Math.Ginac.FFI.ForeignPtr
 import System.IO.Unsafe
 
 import Prelude hiding ( abs, div, signum, sqrt )

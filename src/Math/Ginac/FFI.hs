@@ -1,4 +1,4 @@
-module Ginac.FFI where
+module Math.Ginac.FFI where
 
 import Foreign
 import Foreign.C.String
