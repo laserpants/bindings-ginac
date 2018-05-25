@@ -54,7 +54,7 @@ void ginac_ex_free(ex *this_ex)
 
 bool ginac_ex_equal(const ex &this_ex, const ex &that_ex)
 {
-    return (this_ex == that_ex);
+    return this_ex.is_equal(that_ex);
 }
 
 int ginac_ex_compare(const ex &this_ex, const ex &that_ex)
