@@ -1,4 +1,4 @@
-module Math.Ginac 
+module Math.Ginac
   ( Expr
   , Symbol
   , abs
@@ -6,12 +6,14 @@ module Math.Ginac
   , diff
   , diffn
   , div
+  , eql
   , factorial
   , isNumeric
   , mul
   , neg
   , newSymbol
   , num
+  , ord
   , pow
   , rational
   , signum
@@ -83,6 +85,18 @@ diff (Ex p) (Sym q) = expr (binop (ginac_ex_diff 1) p q)
 diffn :: Int -> Expr -> Symbol -> Expr
 diffn nth (Ex p) (Sym q) = expr (binop (ginac_ex_diff nth) p q)
 
+eql :: Expr -> Expr -> Bool
+eql (Ex p) (Ex q) = unsafePerformIO (withForeignPtr p (withForeignPtr q . ginac_ex_equal))
+
+ord :: Expr -> Expr -> Ordering
+ord (Ex p) (Ex q) =
+    case unsafePerformIO baz of
+      0 -> EQ
+      1 -> GT
+      _ -> LT
+  where
+    baz = withForeignPtr p (withForeignPtr q . ginac_ex_compare)
+
 factorial :: Int -> Expr
 factorial = expr . ginac_ex_factorial
 
@@ -120,7 +134,7 @@ rational r = div (num n) (num d) where
 
 newSymbol :: String -> IO Symbol
 newSymbol name = liftM Sym ptr where
-    ptr = withCString name ginac_symbol_new 
+    ptr = withCString name ginac_symbol_new
       >>= newForeignPtr ginac_basic_free_fun
 
 staticSymbol :: IO (Ptr GinacSymbol)

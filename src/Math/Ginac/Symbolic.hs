@@ -15,3 +15,9 @@ instance Num Expr where
 instance Fractional Expr where
     x / y        = Ex.div x y
     fromRational = rational
+
+instance Eq Expr where
+    x == y       = eql x y
+
+instance Ord Expr where
+    compare      = ord
