@@ -14,6 +14,6 @@ main :: IO ()
 main = hspec $
 
     describe "ginac_ex_new" $
-      it "should return a GiNaC::ex holding a 0" $ do
+      it "should create a GiNaC::ex object representing 0" $ do
         n <- testExNew
         n `shouldBe` 0
