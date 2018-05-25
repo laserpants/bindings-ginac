@@ -155,6 +155,11 @@ ex *ginac_ex_factorial(const int n)
     return new ex(factorial(n));
 }
 
+ex *ginac_ex_series(const ex &this_ex, const relational &r, const int n)
+{
+    return new ex(this_ex.series(r, n));
+}
+
 add *ginac_add(const ex &lh, const ex &rh)
 {
     return new add(lh, rh);

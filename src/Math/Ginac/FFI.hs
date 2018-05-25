@@ -21,8 +21,8 @@ data GinacPow
 -- | Data type to represent the GiNaC::function C++ type
 data GinacFunction
 
--- | Data type to represent the GiNaC::relational (oper=equal) C++ type
-data GinacRelationalEq
+-- | Data type to represent the GiNaC::relational C++ type
+data GinacRelational
 
 foreign import ccall "ginac_ex_new"
     ginac_ex_new :: IO (Ptr GinacEx)
@@ -38,6 +38,9 @@ foreign import ccall "ginac_ex_new_from_double"
 
 foreign import ccall "ginac_ex_new_from_relation_eq"
     ginac_ex_new_from_relation_eq :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
+
+foreign import ccall "ginac_ex_subs"
+    ginac_ex_subs :: Ptr GinacEx -> Ptr GinacRelational -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_subs_int"
     ginac_ex_subs_int :: Int -> Ptr GinacEx -> Ptr GinacSymbol -> IO (Ptr GinacEx)
@@ -105,6 +108,9 @@ foreign import ccall "ginac_ex_pow"
 foreign import ccall "ginac_ex_factorial"
     ginac_ex_factorial :: Int -> IO (Ptr GinacEx)
 
+foreign import ccall "ginac_ex_series"
+    ginac_ex_series :: Ptr GinacEx -> Ptr GinacRelational -> Int -> IO (Ptr GinacEx)
+
 foreign import ccall "ginac_add"
     ginac_add :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacAdd)
 
@@ -118,4 +124,4 @@ foreign import ccall "ginac_factorial"
     ginac_factorial :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacFunction)
 
 foreign import ccall "ginac_relation_eq_new"
-    ginac_relation_eq_new :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacRelationalEq)
+    ginac_relation_eq_new :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacRelational)
