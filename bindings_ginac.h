@@ -17,11 +17,11 @@ GiNaC::ex *ginac_ex_subs_int(int i, const GiNaC::ex &this_ex, const GiNaC::symbo
 
 void ginac_ex_free(GiNaC::ex *this_ex);
 
-bool   ginac_ex_is_numeric(const GiNaC::ex &this_ex);
+bool ginac_ex_is_numeric(const GiNaC::ex &this_ex);
 double ginac_ex_to_double(const GiNaC::ex &this_ex);
-int    ginac_ex_to_int(const GiNaC::ex &this_ex);
-char  *ginac_ex_to_str(const GiNaC::ex &this_ex);
-void   ginac_ex_print(const GiNaC::ex &this_ex);
+int ginac_ex_to_int(const GiNaC::ex &this_ex);
+char *ginac_ex_to_str(const GiNaC::ex &this_ex);
+void ginac_ex_print(const GiNaC::ex &this_ex);
 
 void ginac_basic_free(GiNaC::basic *this_basic);
 
