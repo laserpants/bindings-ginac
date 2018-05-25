@@ -160,6 +160,16 @@ ex *ginac_ex_series(const ex &this_ex, const relational &r, const int n)
     return new ex(this_ex.series(r, n));
 }
 
+ex *ginac_ex_coeff(const ex &this_ex, const ex &s, const int n)
+{
+    return new ex(this_ex.coeff(s, n));
+}
+
+ex *ginac_ex_coeff_symbol(const ex &this_ex, const symbol &s, const int n)
+{
+    return new ex(this_ex.coeff(s, n));
+}
+
 add *ginac_add(const ex &lh, const ex &rh)
 {
     return new add(lh, rh);

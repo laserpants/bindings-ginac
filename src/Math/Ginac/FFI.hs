@@ -111,6 +111,12 @@ foreign import ccall "ginac_ex_factorial"
 foreign import ccall "ginac_ex_series"
     ginac_ex_series :: Ptr GinacEx -> Ptr GinacRelational -> Int -> IO (Ptr GinacEx)
 
+foreign import ccall "ginac_ex_coeff"
+    ginac_ex_coeff :: Ptr GinacEx -> Ptr GinacEx -> Int -> IO (Ptr GinacEx)
+
+foreign import ccall "ginac_ex_coeff_symbol"
+    ginac_ex_coeff_symbol :: Ptr GinacEx -> Ptr GinacSymbol -> Int -> IO (Ptr GinacEx)
+
 foreign import ccall "ginac_add"
     ginac_add :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacAdd)
 
