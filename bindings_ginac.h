@@ -9,11 +9,12 @@ extern "C" {
 
 GiNaC::ex *ginac_ex_new();
 GiNaC::ex *ginac_ex_new_from_basic(const GiNaC::basic &other);
-GiNaC::ex *ginac_ex_new_from_int(int i);
+GiNaC::ex *ginac_ex_new_from_int(const int i);
+GiNaC::ex *ginac_ex_new_from_double(const double d);
 GiNaC::ex *ginac_ex_new_from_relation_eq(const GiNaC::ex &lh, const GiNaC::ex &rh);
 
 GiNaC::ex *ginac_ex_subs(const GiNaC::ex &this_ex, const GiNaC::relational &r);
-GiNaC::ex *ginac_ex_subs_int(int i, const GiNaC::ex &this_ex, const GiNaC::symbol &s);
+GiNaC::ex *ginac_ex_subs_int(const int i, const GiNaC::ex &this_ex, const GiNaC::symbol &s);
 
 void ginac_ex_free(GiNaC::ex *this_ex);
 
@@ -38,12 +39,12 @@ GiNaC::ex *ginac_ex_mul(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::ex *ginac_ex_div(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::ex *ginac_ex_diff(int nth, const GiNaC::ex &this_ex, const GiNaC::symbol &x);
 GiNaC::ex *ginac_ex_pow(const GiNaC::ex &b, const GiNaC::ex &p);
-GiNaC::ex *ginac_ex_factorial(int n);
+GiNaC::ex *ginac_ex_factorial(const int n);
 
 GiNaC::add *ginac_add(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::mul *ginac_mul(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::power *ginac_pow(const GiNaC::ex &b, const GiNaC::ex &p);
-GiNaC::function ginac_factorial(int n);
+GiNaC::function ginac_factorial(const int n);
 GiNaC::relational *ginac_relation_eq_new(const GiNaC::ex &lh, const GiNaC::ex &rh);
 
 #ifdef __cplusplus

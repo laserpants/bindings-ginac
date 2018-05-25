@@ -14,9 +14,14 @@ ex *ginac_ex_new_from_basic(const basic &other)
     return new ex(other);
 }
 
-ex *ginac_ex_new_from_int(int i)
+ex *ginac_ex_new_from_int(const int i)
 {
     return new ex(i);
+}
+
+ex *ginac_ex_new_from_double(const double d)
+{
+    return new ex(d);
 }
 
 ex *ginac_ex_new_from_relation_eq(const ex &lh, const ex &rh)
@@ -33,7 +38,7 @@ ex *ginac_ex_subs(const ex &this_ex, const relational &r)
     }
 }
 
-ex *ginac_ex_subs_int(int i, const ex &this_ex, const symbol &s)
+ex *ginac_ex_subs_int(const int i, const ex &this_ex, const symbol &s)
 {
     try {
         return new ex(this_ex.subs(s == i));
@@ -145,7 +150,7 @@ ex *ginac_ex_pow(const ex &b, const ex &p)
     return new ex(pow(b, p));
 }
 
-ex *ginac_ex_factorial(int n)
+ex *ginac_ex_factorial(const int n)
 {
     return new ex(factorial(n));
 }
@@ -165,7 +170,7 @@ power *ginac_pow(const ex &b, const ex &p)
     return new power(b, p);
 }
 
-function ginac_factorial(int n)
+function ginac_factorial(const int n)
 {
     return factorial(n);
 }
