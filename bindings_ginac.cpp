@@ -26,7 +26,11 @@ ex *ginac_ex_new_from_relation_eq(const ex &lh, const ex &rh)
 
 ex *ginac_ex_subs(const ex &this_ex, const relational &r)
 {
-    return new ex(this_ex.subs(r));
+    try {
+        return new ex(this_ex.subs(r));
+    } catch (pole_error e) {
+        return new ex(fail());
+    }
 }
 
 ex *ginac_ex_subs_int(int i, const ex &this_ex, const symbol &s)
