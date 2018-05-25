@@ -9,6 +9,18 @@ data GinacEx
 -- | Data type to represent the GiNaC::symbol C++ type
 data GinacSymbol
 
+-- | Data type to represent the GiNaC::add C++ type
+data GinacAdd
+
+-- | Data type to represent the GiNaC::mul C++ type
+data GinacMul
+
+-- | Data type to represent the GiNaC::power C++ type
+data GinacPow
+
+-- | Data type to represent the GiNaC::function C++ type
+data GinacFunction
+
 -- | Data type to represent the GiNaC::relational (oper=equal) C++ type
 data GinacRelationalEq
 
@@ -69,23 +81,35 @@ foreign import ccall "ginac_ex_signum"
 foreign import ccall "ginac_ex_sqrt"
     ginac_ex_sqrt :: Ptr GinacEx -> IO (Ptr GinacEx)
 
+foreign import ccall "ginac_ex_add"
+    ginac_ex_add :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
+
+foreign import ccall "ginac_ex_mul"
+    ginac_ex_mul :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
+
+foreign import ccall "ginac_ex_div"
+    ginac_ex_div :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
+
+foreign import ccall "ginac_ex_diff"
+    ginac_ex_diff :: Int -> Ptr GinacEx -> Ptr GinacSymbol -> IO (Ptr GinacEx)
+
+foreign import ccall "ginac_ex_pow"
+    ginac_ex_pow :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
+
+foreign import ccall "ginac_ex_factorial"
+    ginac_ex_factorial :: Int -> IO (Ptr GinacEx)
+
 foreign import ccall "ginac_add"
-    ginac_add :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
+    ginac_add :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacAdd)
 
 foreign import ccall "ginac_mul"
-    ginac_mul :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
-
-foreign import ccall "ginac_div"
-    ginac_div :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
-
-foreign import ccall "ginac_diff"
-    ginac_diff :: Int -> Ptr GinacEx -> Ptr GinacSymbol -> IO (Ptr GinacEx)
+    ginac_mul :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacMul)
 
 foreign import ccall "ginac_pow"
-    ginac_pow :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
+    ginac_pow :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacPow)
 
 foreign import ccall "ginac_factorial"
-    ginac_factorial :: Int -> IO (Ptr GinacEx)
+    ginac_factorial :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacFunction)
 
 foreign import ccall "ginac_relation_eq_new"
     ginac_relation_eq_new :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacRelationalEq)

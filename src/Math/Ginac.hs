@@ -57,16 +57,16 @@ binop :: (Ptr a -> Ptr b -> IO c) -> ForeignPtr a -> ForeignPtr b -> IO c
 binop op p q = withForeignPtr p (withForeignPtr q . op)
 
 add :: Expr -> Expr -> Expr
-add (Ex p) (Ex q) = expr (binop ginac_add p q)
+add (Ex p) (Ex q) = expr (binop ginac_ex_add p q)
 
 mul :: Expr -> Expr -> Expr
-mul (Ex p) (Ex q) = expr (binop ginac_mul p q)
+mul (Ex p) (Ex q) = expr (binop ginac_ex_mul p q)
 
 div :: Expr -> Expr -> Expr
-div (Ex p) (Ex q) = expr (binop ginac_div p q)
+div (Ex p) (Ex q) = expr (binop ginac_ex_div p q)
 
 pow :: Expr -> Expr -> Expr
-pow (Ex p) (Ex q) = expr (binop ginac_pow p q)
+pow (Ex p) (Ex q) = expr (binop ginac_ex_pow p q)
 
 neg :: Expr -> Expr
 neg (Ex ptr) = expr (withForeignPtr ptr ginac_ex_neg)
@@ -78,13 +78,13 @@ signum :: Expr -> Expr
 signum (Ex ptr) = expr (withForeignPtr ptr ginac_ex_signum)
 
 diff :: Expr -> Symbol -> Expr
-diff (Ex p) (Sym q) = expr (binop (ginac_diff 1) p q)
+diff (Ex p) (Sym q) = expr (binop (ginac_ex_diff 1) p q)
 
 diffn :: Int -> Expr -> Symbol -> Expr
-diffn nth (Ex p) (Sym q) = expr (binop (ginac_diff nth) p q)
+diffn nth (Ex p) (Sym q) = expr (binop (ginac_ex_diff nth) p q)
 
 factorial :: Int -> Expr
-factorial = expr . ginac_factorial
+factorial = expr . ginac_ex_factorial
 
 sqrt :: Expr -> Expr
 sqrt (Ex ptr) = expr (withForeignPtr ptr ginac_ex_sqrt)

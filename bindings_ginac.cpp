@@ -24,9 +24,18 @@ ex *ginac_ex_new_from_relation_eq(const ex &lh, const ex &rh)
     return new ex(relational(lh, rh));
 }
 
+ex *ginac_ex_subs(const ex &this_ex, const relational &r)
+{
+    return new ex(this_ex.subs(r));
+}
+
 ex *ginac_ex_subs_int(int i, const ex &this_ex, const symbol &s)
 {
-    return new ex(this_ex.subs(s == i));
+    try {
+        return new ex(this_ex.subs(s == i));
+    } catch (pole_error e) {
+        return new ex(fail());
+    }
 }
 
 void ginac_ex_free(ex *this_ex)
@@ -103,17 +112,17 @@ ex *ginac_ex_sqrt(const ex &this_ex)
     return new ex(sqrt(this_ex));
 }
 
-ex *ginac_add(const ex &lh, const ex &rh)
+ex *ginac_ex_add(const ex &lh, const ex &rh)
 {
     return new ex(add(lh, rh));
 }
 
-ex *ginac_mul(const ex &lh, const ex &rh)
+ex *ginac_ex_mul(const ex &lh, const ex &rh)
 {
     return new ex(mul(lh, rh));
 }
 
-ex *ginac_div(const ex &lh, const ex &rh)
+ex *ginac_ex_div(const ex &lh, const ex &rh)
 {
     try {
         return new ex(lh/rh);
@@ -122,19 +131,39 @@ ex *ginac_div(const ex &lh, const ex &rh)
     }
 }
 
-ex *ginac_diff(int nth, const ex &this_ex, const symbol &x)
+ex *ginac_ex_diff(int nth, const ex &this_ex, const symbol &x)
 {
     return new ex(this_ex.diff(x, nth));
 }
 
-ex *ginac_pow(const ex &b, const ex &p)
+ex *ginac_ex_pow(const ex &b, const ex &p)
 {
     return new ex(pow(b, p));
 }
 
-ex *ginac_factorial(int n)
+ex *ginac_ex_factorial(int n)
 {
     return new ex(factorial(n));
+}
+
+add *ginac_add(const ex &lh, const ex &rh)
+{
+    return new add(lh, rh);
+}
+
+mul *ginac_mul(const ex &lh, const ex &rh)
+{
+    return new mul(lh, rh);
+}
+
+power *ginac_pow(const ex &b, const ex &p)
+{
+    return new power(b, p);
+}
+
+function ginac_factorial(int n)
+{
+    return factorial(n);
 }
 
 relational *ginac_relation_eq_new(const ex &lh, const ex &rh)
