@@ -51,6 +51,12 @@ foreign import ccall "ginac_ex_free"
 foreign import ccall "&ginac_ex_free"
     ginac_ex_free_fun :: FunPtr (Ptr GinacEx -> IO ())
 
+foreign import ccall "ginac_ex_equal"
+    ginac_ex_equal :: Ptr GinacEx -> Ptr GinacEx -> IO Bool
+
+foreign import ccall "ginac_ex_compare"
+    ginac_ex_compare :: Ptr GinacEx -> Ptr GinacEx -> IO Int
+
 foreign import ccall "ginac_ex_is_numeric"
     ginac_ex_is_numeric :: Ptr GinacEx -> IO Bool
 
@@ -115,7 +121,7 @@ foreign import ccall "ginac_ex_coeff"
     ginac_ex_coeff :: Ptr GinacEx -> Ptr GinacEx -> Int -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_coeff_symbol"
-    ginac_ex_coeff_symbol :: Ptr GinacEx -> Ptr GinacSymbol -> Int -> IO (Ptr GinacEx)
+    ginac_ex_coeff_symbol :: Int -> Ptr GinacEx -> Ptr GinacSymbol -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_add"
     ginac_add :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacAdd)

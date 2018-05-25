@@ -52,6 +52,16 @@ void ginac_ex_free(ex *this_ex)
     delete this_ex;
 }
 
+bool ginac_ex_equal(const ex &this_ex, const ex &that_ex)
+{
+    return (this_ex == that_ex);
+}
+
+int ginac_ex_compare(const ex &this_ex, const ex &that_ex)
+{
+    return this_ex.compare(that_ex);
+}
+
 bool ginac_ex_is_numeric(const ex &this_ex)
 {
     return is_a<numeric>(this_ex);
@@ -165,7 +175,7 @@ ex *ginac_ex_coeff(const ex &this_ex, const ex &s, const int n)
     return new ex(this_ex.coeff(s, n));
 }
 
-ex *ginac_ex_coeff_symbol(const ex &this_ex, const symbol &s, const int n)
+ex *ginac_ex_coeff_symbol(const int n, const ex &this_ex, const symbol &s)
 {
     return new ex(this_ex.coeff(s, n));
 }
