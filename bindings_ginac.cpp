@@ -101,12 +101,6 @@ symbol *ginac_symbol_new(const char *name)
     return new symbol(name);
 }
 
-symbol *ginac_symbol_static()
-{
-    static symbol s;
-    return &s;
-}
-
 ex *ginac_ex_neg(const ex &this_ex)
 {
     return new ex(-this_ex);
