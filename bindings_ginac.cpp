@@ -205,17 +205,17 @@ relational *ginac_relation_eq_new(const ex &lh, const ex &rh)
     return new relational(lh, rh);
 }
 
-numeric *numeric_new_from_int(const int i)
+numeric *ginac_numeric_new_from_int(const int i)
 {
     return new numeric(i);
 }
 
-numeric *numeric_new_from_double(const double d)
+numeric *ginac_numeric_new_from_double(const double d)
 {
     return new numeric(d);
 }
 
-numeric *numeric_new_from_str(const char *c)
+numeric *ginac_numeric_new_from_str(const char *c)
 {
     return new numeric(c);
 }
