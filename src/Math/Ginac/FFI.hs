@@ -24,6 +24,9 @@ data GinacFunction
 -- | Data type to represent the GiNaC::relational C++ type
 data GinacRelational
 
+-- | Data type to represent the GiNaC::numeric C++ type
+data GinacNumeric
+
 foreign import ccall "ginac_ex_new"
     ginac_ex_new :: IO (Ptr GinacEx)
 
@@ -137,3 +140,12 @@ foreign import ccall "ginac_factorial"
 
 foreign import ccall "ginac_relation_eq_new"
     ginac_relation_eq_new :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacRelational)
+
+foreign import ccall "ginac_numeric_new_from_int"
+    ginac_numeric_new_from_int :: Int -> IO (Ptr GinacNumeric)
+
+foreign import ccall "ginac_numeric_new_from_double"
+    ginac_numeric_new_from_double :: Double -> IO (Ptr GinacNumeric)
+
+foreign import ccall "ginac_numeric_new_from_str"
+    ginac_numeric_new_from_str :: CString -> IO (Ptr GinacNumeric)

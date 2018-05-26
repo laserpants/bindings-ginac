@@ -52,6 +52,10 @@ GiNaC::power *ginac_pow(const GiNaC::ex &b, const GiNaC::ex &p);
 GiNaC::function ginac_factorial(const int n);
 GiNaC::relational *ginac_relation_eq_new(const GiNaC::ex &lh, const GiNaC::ex &rh);
 
+GiNaC::numeric *numeric_new_from_int(const int i);
+GiNaC::numeric *numeric_new_from_double(const double d);
+GiNaC::numeric *numeric_new_from_str(const char *c);
+
 #ifdef __cplusplus
 }
 #endif
