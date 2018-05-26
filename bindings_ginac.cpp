@@ -29,10 +29,10 @@ ex *ginac_ex_new_from_relation_eq(const ex &lh, const ex &rh)
     return new ex(relational(lh, rh));
 }
 
-ex *ginac_ex_subs(const ex &this_ex, const relational &r)
+ex *ginac_ex_subs(const ex &this_ex, const relational &rel)
 {
     try {
-        return new ex(this_ex.subs(r));
+        return new ex(this_ex.subs(rel));
     } catch (pole_error e) {
         return new ex(fail());
     }
@@ -107,7 +107,7 @@ symbol *ginac_symbol_static()
 
 ex *ginac_ex_neg(const ex &this_ex)
 {
-    return new ex(mul(-1, this_ex));
+    return new ex(-this_ex);
 }
 
 ex *ginac_ex_abs(const ex &this_ex)
@@ -165,9 +165,9 @@ ex *ginac_ex_factorial(const int n)
     return new ex(factorial(n));
 }
 
-ex *ginac_ex_series(const ex &this_ex, const relational &r, const int n)
+ex *ginac_ex_series(const ex &this_ex, const relational &rel, const int n)
 {
-    return new ex(this_ex.series(r, n));
+    return new ex(this_ex.series(rel, n));
 }
 
 ex *ginac_ex_coeff(const ex &this_ex, const ex &s, const int n)

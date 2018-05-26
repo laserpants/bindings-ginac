@@ -34,7 +34,7 @@ foreign import ccall "ginac_ex_new_from_int"
     ginac_ex_new_from_int :: Int -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_new_from_double"
-    ginac_ex_new_from_double :: Int -> IO (Ptr GinacEx)
+    ginac_ex_new_from_double :: Double -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_new_from_relation_eq"
     ginac_ex_new_from_relation_eq :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)

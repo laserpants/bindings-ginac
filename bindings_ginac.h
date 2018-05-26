@@ -13,7 +13,7 @@ GiNaC::ex *ginac_ex_new_from_int(const int i);
 GiNaC::ex *ginac_ex_new_from_double(const double d);
 GiNaC::ex *ginac_ex_new_from_relation_eq(const GiNaC::ex &lh, const GiNaC::ex &rh);
 
-GiNaC::ex *ginac_ex_subs(const GiNaC::ex &this_ex, const GiNaC::relational &r);
+GiNaC::ex *ginac_ex_subs(const GiNaC::ex &this_ex, const GiNaC::relational &rel);
 GiNaC::ex *ginac_ex_subs_int(const int i, const GiNaC::ex &this_ex, const GiNaC::symbol &s);
 
 void ginac_ex_free(GiNaC::ex *this_ex);
@@ -42,7 +42,7 @@ GiNaC::ex *ginac_ex_div(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::ex *ginac_ex_diff(int nth, const GiNaC::ex &this_ex, const GiNaC::symbol &x);
 GiNaC::ex *ginac_ex_pow(const GiNaC::ex &b, const GiNaC::ex &p);
 GiNaC::ex *ginac_ex_factorial(const int n);
-GiNaC::ex *ginac_ex_series(const GiNaC::ex &this_ex, const GiNaC::relational &r, const int n);
+GiNaC::ex *ginac_ex_series(const GiNaC::ex &this_ex, const GiNaC::relational &rel, const int n);
 GiNaC::ex *ginac_ex_coeff(const GiNaC::ex &this_ex, const GiNaC::ex &s, const int n);
 GiNaC::ex *ginac_ex_coeff_symbol(const int n, const GiNaC::ex &this_ex, const GiNaC::symbol &s);
 
