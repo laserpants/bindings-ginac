@@ -2,6 +2,7 @@ module Math.Ginac.FFI where
 
 import Foreign
 import Foreign.C.String
+import Foreign.C.Types
 
 -- | Data type to represent the GiNaC::ex C++ type
 data GinacEx
@@ -34,7 +35,7 @@ foreign import ccall "ginac_ex_new_from_basic"
     ginac_ex_new_from_basic :: Ptr a -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_new_from_int"
-    ginac_ex_new_from_int :: Int -> IO (Ptr GinacEx)
+    ginac_ex_new_from_int :: CInt -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_new_from_double"
     ginac_ex_new_from_double :: Double -> IO (Ptr GinacEx)
@@ -46,7 +47,7 @@ foreign import ccall "ginac_ex_subs"
     ginac_ex_subs :: Ptr GinacEx -> Ptr GinacRelational -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_subs_int"
-    ginac_ex_subs_int :: Int -> Ptr GinacEx -> Ptr GinacSymbol -> IO (Ptr GinacEx)
+    ginac_ex_subs_int :: CInt -> Ptr GinacEx -> Ptr GinacSymbol -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_free"
     ginac_ex_free :: Ptr GinacEx -> IO ()
@@ -55,19 +56,19 @@ foreign import ccall "&ginac_ex_free"
     ginac_ex_free_fun :: FunPtr (Ptr GinacEx -> IO ())
 
 foreign import ccall "ginac_ex_equal"
-    ginac_ex_equal :: Ptr GinacEx -> Ptr GinacEx -> IO Bool
+    ginac_ex_equal :: Ptr GinacEx -> Ptr GinacEx -> IO CBool
 
 foreign import ccall "ginac_ex_compare"
-    ginac_ex_compare :: Ptr GinacEx -> Ptr GinacEx -> IO Int
+    ginac_ex_compare :: Ptr GinacEx -> Ptr GinacEx -> IO CInt
 
 foreign import ccall "ginac_ex_is_numeric"
-    ginac_ex_is_numeric :: Ptr GinacEx -> IO Bool
+    ginac_ex_is_numeric :: Ptr GinacEx -> IO CBool
 
 foreign import ccall "ginac_ex_to_double"
     ginac_ex_to_double :: Ptr GinacEx -> IO Double
 
 foreign import ccall "ginac_ex_to_int"
-    ginac_ex_to_int :: Ptr GinacEx -> IO Int
+    ginac_ex_to_int :: Ptr GinacEx -> IO CInt
 
 foreign import ccall "ginac_ex_to_str"
     ginac_ex_to_str :: Ptr GinacEx -> IO CString
@@ -109,19 +110,19 @@ foreign import ccall "ginac_ex_div"
     ginac_ex_div :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_diff"
-    ginac_ex_diff :: Int -> Ptr GinacEx -> Ptr GinacSymbol -> IO (Ptr GinacEx)
+    ginac_ex_diff :: CInt -> Ptr GinacEx -> Ptr GinacSymbol -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_pow"
     ginac_ex_pow :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_factorial"
-    ginac_ex_factorial :: Int -> IO (Ptr GinacEx)
+    ginac_ex_factorial :: CInt -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_series"
-    ginac_ex_series :: Ptr GinacEx -> Ptr GinacRelational -> Int -> IO (Ptr GinacEx)
+    ginac_ex_series :: Ptr GinacEx -> Ptr GinacRelational -> CInt -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_coeff"
-    ginac_ex_coeff :: Ptr GinacEx -> Ptr GinacEx -> Int -> IO (Ptr GinacEx)
+    ginac_ex_coeff :: Ptr GinacEx -> Ptr GinacEx -> CInt -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_add"
     ginac_add :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacAdd)
@@ -139,7 +140,7 @@ foreign import ccall "ginac_relation_eq_new"
     ginac_relation_eq_new :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacRelational)
 
 foreign import ccall "ginac_numeric_new_from_int"
-    ginac_numeric_new_from_int :: Int -> IO (Ptr GinacNumeric)
+    ginac_numeric_new_from_int :: CInt -> IO (Ptr GinacNumeric)
 
 foreign import ccall "ginac_numeric_new_from_double"
     ginac_numeric_new_from_double :: Double -> IO (Ptr GinacNumeric)

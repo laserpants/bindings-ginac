@@ -8,13 +8,13 @@ extractInt :: Ptr GinacEx -> IO Int
 extractInt ptr = do
     n <- ginac_ex_to_int ptr
     ginac_ex_free ptr
-    pure n
+    pure (fromIntegral n)
 
 testExNew :: IO Int
 testExNew = ginac_ex_new >>= extractInt
 
 testExNewFromInt :: Int -> IO Int
-testExNewFromInt m = ginac_ex_new_from_int m >>= extractInt
+testExNewFromInt m = ginac_ex_new_from_int (fromIntegral m) >>= extractInt
 
 main :: IO ()
 main = hspec $ do
