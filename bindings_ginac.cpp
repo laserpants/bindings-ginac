@@ -132,6 +132,11 @@ ex *ginac_ex_add(const ex &lh, const ex &rh)
     return new ex(add(lh, rh));
 }
 
+ex *ginac_ex_sub(const ex &lh, const ex &rh)
+{
+    return new ex(add(lh, -rh));
+}
+
 ex *ginac_ex_mul(const ex &lh, const ex &rh)
 {
     return new ex(mul(lh, rh));

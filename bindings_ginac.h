@@ -36,6 +36,7 @@ GiNaC::ex *ginac_ex_abs(const GiNaC::ex &this_ex);
 GiNaC::ex *ginac_ex_signum(const GiNaC::ex &this_ex);
 GiNaC::ex *ginac_ex_sqrt(const GiNaC::ex &this_ex);
 GiNaC::ex *ginac_ex_add(const GiNaC::ex &lh, const GiNaC::ex &rh);
+GiNaC::ex *ginac_ex_sub(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::ex *ginac_ex_mul(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::ex *ginac_ex_div(const GiNaC::ex &lh, const GiNaC::ex &rh);
 GiNaC::ex *ginac_ex_diff(int nth, const GiNaC::ex &this_ex, const GiNaC::symbol &x);

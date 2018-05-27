@@ -99,6 +99,9 @@ foreign import ccall "ginac_ex_sqrt"
 foreign import ccall "ginac_ex_add"
     ginac_ex_add :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
 
+foreign import ccall "ginac_ex_sub"
+    ginac_ex_sub :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
+
 foreign import ccall "ginac_ex_mul"
     ginac_ex_mul :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
 
