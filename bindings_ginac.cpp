@@ -49,7 +49,7 @@ ex *ginac_ex_subs_int(const int i, const ex &this_ex, const symbol &s)
 
 void ginac_ex_free(ex *this_ex)
 {
-    std::cout << "ginac_ex_free" << " [" << *this_ex << "]" << std::endl;
+    //std::cout << "ginac_ex_free" << " [" << *this_ex << "]" << std::endl;
     delete this_ex;
 }
 
@@ -92,7 +92,7 @@ void ginac_ex_print(const ex &this_ex)
 
 void ginac_basic_free(basic *this_basic)
 {
-    std::cout << "ginac_basic_free" << std::endl;
+    //std::cout << "ginac_basic_free" << std::endl;
     delete this_basic;
 }
 
@@ -167,11 +167,6 @@ ex *ginac_ex_series(const ex &this_ex, const relational &rel, const int n)
 }
 
 ex *ginac_ex_coeff(const ex &this_ex, const ex &s, const int n)
-{
-    return new ex(this_ex.coeff(s, n));
-}
-
-ex *ginac_ex_coeff_symbol(const int n, const ex &this_ex, const symbol &s)
 {
     return new ex(this_ex.coeff(s, n));
 }
