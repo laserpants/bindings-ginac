@@ -38,7 +38,7 @@ foreign import ccall "ginac_ex_new_from_int"
     ginac_ex_new_from_int :: CLong -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_new_from_double"
-    ginac_ex_new_from_double :: Double -> IO (Ptr GinacEx)
+    ginac_ex_new_from_double :: CDouble -> IO (Ptr GinacEx)
 
 foreign import ccall "ginac_ex_new_from_relation_eq"
     ginac_ex_new_from_relation_eq :: Ptr GinacEx -> Ptr GinacEx -> IO (Ptr GinacEx)
@@ -65,7 +65,7 @@ foreign import ccall "ginac_ex_is_numeric"
     ginac_ex_is_numeric :: Ptr GinacEx -> IO CBool
 
 foreign import ccall "ginac_ex_to_double"
-    ginac_ex_to_double :: Ptr GinacEx -> IO Double
+    ginac_ex_to_double :: Ptr GinacEx -> IO CDouble
 
 foreign import ccall "ginac_ex_to_int"
     ginac_ex_to_int :: Ptr GinacEx -> IO CLong
@@ -143,7 +143,7 @@ foreign import ccall "ginac_numeric_new_from_int"
     ginac_numeric_new_from_int :: CLong -> IO (Ptr GinacNumeric)
 
 foreign import ccall "ginac_numeric_new_from_double"
-    ginac_numeric_new_from_double :: Double -> IO (Ptr GinacNumeric)
+    ginac_numeric_new_from_double :: CDouble -> IO (Ptr GinacNumeric)
 
 foreign import ccall "ginac_numeric_new_from_str"
     ginac_numeric_new_from_str :: CString -> IO (Ptr GinacNumeric)
