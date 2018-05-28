@@ -14,7 +14,7 @@ ex *ginac_ex_new_from_basic(const basic &other)
     return new ex(other);
 }
 
-ex *ginac_ex_new_from_int(int i)
+ex *ginac_ex_new_from_int(long int i)
 {
     return new ex(i);
 }
