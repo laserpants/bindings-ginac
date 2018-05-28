@@ -14,7 +14,7 @@ ex *ginac_ex_new_from_basic(const basic &other)
     return new ex(other);
 }
 
-ex *ginac_ex_new_from_int(const int i)
+ex *ginac_ex_new_from_int(const long int i)
 {
     return new ex(i);
 }
@@ -38,7 +38,7 @@ ex *ginac_ex_subs(const ex &this_ex, const relational &rel)
     }
 }
 
-ex *ginac_ex_subs_int(const int i, const ex &this_ex, const symbol &s)
+ex *ginac_ex_subs_int(const long int i, const ex &this_ex, const symbol &s)
 {
     try {
         return new ex(this_ex.subs(s == i));
@@ -58,7 +58,7 @@ bool ginac_ex_equal(const ex &this_ex, const ex &that_ex)
     return this_ex.is_equal(that_ex);
 }
 
-int ginac_ex_compare(const ex &this_ex, const ex &that_ex)
+long int ginac_ex_compare(const ex &this_ex, const ex &that_ex)
 {
     return this_ex.compare(that_ex);
 }
@@ -73,7 +73,7 @@ double ginac_ex_to_double(const ex &this_ex)
     return ex_to<numeric>(this_ex).to_double();
 }
 
-int ginac_ex_to_int(const ex &this_ex)
+long int ginac_ex_to_int(const ex &this_ex)
 {
     return ex_to<numeric>(this_ex).to_int();
 }
@@ -151,7 +151,7 @@ ex *ginac_ex_div(const ex &lh, const ex &rh)
     }
 }
 
-ex *ginac_ex_diff(int nth, const ex &this_ex, const symbol &x)
+ex *ginac_ex_diff(long int nth, const ex &this_ex, const symbol &x)
 {
     return new ex(this_ex.diff(x, nth));
 }
@@ -161,17 +161,17 @@ ex *ginac_ex_pow(const ex &b, const ex &p)
     return new ex(pow(b, p));
 }
 
-ex *ginac_ex_factorial(const int n)
+ex *ginac_ex_factorial(const long int n)
 {
     return new ex(factorial(n));
 }
 
-ex *ginac_ex_series(const ex &this_ex, const relational &rel, const int n)
+ex *ginac_ex_series(const ex &this_ex, const relational &rel, const long int n)
 {
     return new ex(this_ex.series(rel, n));
 }
 
-ex *ginac_ex_coeff(const ex &this_ex, const ex &s, const int n)
+ex *ginac_ex_coeff(const ex &this_ex, const ex &s, const long int n)
 {
     return new ex(this_ex.coeff(s, n));
 }
@@ -191,7 +191,7 @@ power *ginac_pow(const ex &b, const ex &p)
     return new power(b, p);
 }
 
-function ginac_factorial(const int n)
+function ginac_factorial(const long int n)
 {
     return factorial(n);
 }
@@ -201,7 +201,7 @@ relational *ginac_relation_eq_new(const ex &lh, const ex &rh)
     return new relational(lh, rh);
 }
 
-numeric *ginac_numeric_new_from_int(const int i)
+numeric *ginac_numeric_new_from_int(const long int i)
 {
     return new numeric(i);
 }
